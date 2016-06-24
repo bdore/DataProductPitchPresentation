@@ -1,0 +1,46 @@
+Fuel efficiency and car aspects 
+========================================================
+author: Bernardo Dore
+date: `r date()`
+
+
+The problem
+========================================================
+
+The fuel efficiency of cars is a major concern nowadays both for environmental
+and economic purposes.
+
+We will help the consumer choose a car based on MPG.
+
+
+The product
+========================================================
+
+We built an application to help the consumer find a car whose aspects match the desired MPG (miles per gallon) consumption.
+
+
+The magic
+========================================================
+
+A linear model is fit using MPG as the predictor.
+<small>
+```{r}
+cars <- mtcars
+fit <- lm(as.matrix(cars[,2:11]) ~ mpg, data = cars)
+```
+</small>
+
+
+Recommendation
+========================================================
+
+The user selects the desired MPG value in a slider. The value is then used to make a prediction.
+
+We will use the value "30" here as a demo.
+<small>
+```{r, width=10}
+newMpg <- data.frame(mpg = 30)
+predict(fit, newMpg)
+```
+</small>
+So, a car with expected MPG of 30 should have around 60 HP and 4 gears.
